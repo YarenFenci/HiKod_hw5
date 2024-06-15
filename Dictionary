@@ -1,0 +1,56 @@
+# Öğrenci notlarını tutan sözlük
+ogrenci_notlari = {
+    'Ali': {'Matematik': 82, 'Fizik': 98, 'Kimya': 92},
+    'Ayşe': {'Matematik': 90, 'Fizik': 88, 'Kimya': 85},
+    'Mehmet': {'Matematik': 75, 'Fizik': 82, 'Kimya': 79}
+}
+
+def not_goruntule(ogrenci_adi, ders):
+    if ogrenci_adi in ogrenci_notlari:
+        if ders in ogrenci_notlari[ogrenci_adi]:
+            return f"{ogrenci_adi} adlı öğrencinin {ders} notu: {ogrenci_notlari[ogrenci_adi][ders]}"
+        else:
+            return f"{ogrenci_adi} adlı öğrencinin {ders} dersi için not bilgisi bulunamadı."
+    else:
+        return f"{ogrenci_adi} adlı öğrenci bulunamadı."
+
+def not_degistir(ogrenci_adi, ders, yeni_not):
+    if ogrenci_adi in ogrenci_notlari:
+        ogrenci_notlari[ogrenci_adi][ders] = yeni_not
+        return f"{ogrenci_adi} adlı öğrencinin {ders} notu {yeni_not} olarak güncellendi."
+    else:
+        return f"{ogrenci_adi} adlı öğrenci bulunamadı."
+
+def yeni_ogrenci_ekle(ogrenci_adi, notlar):
+    if ogrenci_adi not in ogrenci_notlari:
+        ogrenci_notlari[ogrenci_adi] = notlar
+        return f"{ogrenci_adi} adlı öğrenci eklendi."
+    else:
+        return f"{ogrenci_adi} adlı öğrenci zaten mevcut."
+
+def bilgileri_sor():
+    ogrenci_adi = input("Öğrencinin adını girin: ")
+    ders = input("Ders ismini girin (Matematik, Fizik, Kimya): ")
+    return ogrenci_adi, ders
+
+
+ogrenci_adi, ders = bilgileri_sor()
+print(not_goruntule(ogrenci_adi, ders))
+
+
+ogrenci_adi = input("Notunu değiştirmek istediğiniz öğrencinin adını girin: ")
+ders = input("Ders ismini girin (Matematik, Fizik, Kimya): ")
+yeni_not = int(input(f"{ogrenci_adi} adlı öğrencinin {ders} notunu girin: "))
+print(not_degistir(ogrenci_adi, ders, yeni_not))
+
+ogrenci_adi = input("Yeni öğrencinin adını girin: ")
+matematik_notu = int(input("Matematik notunu girin: "))
+fizik_notu = int(input("Fizik notunu girin: "))
+kimya_notu = int(input("Kimya notunu girin: "))
+yeni_notlar = {'Matematik': matematik_notu, 'Fizik': fizik_notu, 'Kimya': kimya_notu}
+print(yeni_ogrenci_ekle(ogrenci_adi, yeni_notlar))
+
+print("Güncel öğrenci notları:")
+for ogrenci, notlar in ogrenci_notlari.items():
+    print(f"{ogrenci}: {notlar}")
+
